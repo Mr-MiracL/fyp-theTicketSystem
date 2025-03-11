@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../styles/auth.css";  
+import "../styles/auth.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -14,11 +14,17 @@ const LoginPage = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    
     try {
+     
       const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
-      localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
+      
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token); 
+        navigate("/homePage");  
+      }
     } catch (err) {
+      console.error(err); 
       setError("Login failed. Please check your email and password.");
     } finally {
       setLoading(false);
@@ -30,7 +36,9 @@ const LoginPage = () => {
       <div className="auth-box">
         <h2 className="auth-title">Ticketing System</h2>
         <p className="auth-subtitle">Welcome back! Please log in.</p>
-        {error && <p className="auth-error">{error}</p>}
+        
+        {error && <p className="auth-error">{error}</p>} 
+        
         <form onSubmit={handleLogin} className="auth-form">
           <input
             type="email"
@@ -38,6 +46,7 @@ const LoginPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="auth-input"
+            required  
           />
           <input
             type="password"
@@ -45,11 +54,13 @@ const LoginPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="auth-input"
+            required  
           />
           <button type="submit" disabled={loading} className="auth-button">
-            {loading ? "Logging in..." : "Log In"}
+            {loading ? "Logging in..." : "Log In"} 
           </button>
         </form>
+        
         <p className="auth-link">
           Don't have an account? <a href="/register">Sign up</a>
         </p>

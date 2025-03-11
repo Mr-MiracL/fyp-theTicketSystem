@@ -11,8 +11,24 @@ const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const validateForm = () => {
+   
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email || !emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return false;
+    }
+   
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      return false;
+    }
+    return true;
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;  
     setLoading(true);
     setError("");
     try {

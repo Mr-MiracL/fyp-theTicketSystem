@@ -1,0 +1,43 @@
+body, html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+body, html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.homepage-container {
+    max-width: 1200px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+.left-content {
+    flex: 2;  
+}
+
+
+.help-center {
+    flex: 1;  
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+
