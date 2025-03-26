@@ -3,8 +3,12 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./router/authRoute.js"; 
-import ticketRoutes from "./routerricketRoute.js"
+import ticketRoutes from "./router/ticketRoute.js"
 import orderRoutes from "./router/orderRoute.js"
+import paymentRoutes from"./router/paymentRoute.js"
+import eventRoutes from "./router/eventRoute.js"
+
+
 
 dotenv.config();
 const app = express();
@@ -14,15 +18,8 @@ app.use(bodyParser.json());
 app.use("/api/auth", authRoutes);  
 app.use("/api/tickets", ticketRoutes);
 app.use("/api/orders", orderRoutes);
-
-
-const express = require('express');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const jwt = require('jsonwebtoken');
-
+app.use("/api/payment", paymentRoutes);
+app.use("/api/events", eventRoutes);
 
 const PORT = 5000;
 
