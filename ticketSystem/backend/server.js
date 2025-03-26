@@ -1,3 +1,21 @@
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import authRoutes from "./router/authRoute.js"; 
+import ticketRoutes from "./routerricketRoute.js"
+import orderRoutes from "./router/orderRoute.js"
+
+dotenv.config();
+const app = express();
+app.use(express.json());
+app.use(cors());
+app.use(bodyParser.json());
+app.use("/api/auth", authRoutes);  
+app.use("/api/tickets", ticketRoutes);
+app.use("/api/orders", orderRoutes);
+
+
 const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -5,11 +23,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 
-const app = express();
+
 const PORT = 5000;
 
-app.use(cors());
-app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost:27017/ticketing-system', {
   useNewUrlParser: true,

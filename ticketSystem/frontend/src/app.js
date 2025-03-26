@@ -6,6 +6,7 @@ import InitialPage from "./pages/initialPage.js";
 import React from 'react';
 import { AuthProvider } from "./context/authContext";
 
+
 function App() {
   return (
     <AuthProvider>
