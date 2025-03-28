@@ -20,6 +20,17 @@ app.use("/api/tickets", ticketRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/events", eventRoutes);
+app.use((err,req,res,next)=>{
+  const errorStatus=err.status || 500
+  const errorMessage =err.message || "something went wrong!"
+  return res.status(500).json(errorMessage).json({
+    success: false,
+    status:errorStatus,
+    message:errorMessage,
+    stack:err.stack,
+  })
+
+})
 
 const PORT = 5000;
 
