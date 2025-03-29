@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import authRoutes from "./router/authRoute.js"; 
-import eventRoutes from "./router/eventRoute.js";
+import authRouter from "./router/authRoute.js"; 
+import eventRouter from "./router/eventRoute.js";
 //import orderRoutes from "./router/orderRoute.js";
 //import paymentRoutes from "./router/paymentRoute.js";
 //import ticketRoutes from "./router/ticketRoute.js";
@@ -16,11 +16,11 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.urlencoded({ extended: true })); // 解析 URL-encoded 数据
-app.use("/api/auth", authRoutes);  
+app.use("/api/auth", authRouter);  
 //app.use("/api/tickets", ticketRoutes);
 //app.use("/api/orders", orderRoutes);
 //app.use("/api/payment", paymentRoutes);
-app.use("/api/events", eventRoutes);
+app.use("/api/events", eventRouter);
 app.use((err,req,res,next)=>{
   const errorStatus=err.status || 500
   const errorMessage =err.message || "something went wrong!"
