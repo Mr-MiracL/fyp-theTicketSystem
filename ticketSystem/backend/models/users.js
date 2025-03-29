@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// middleware
+// middleware with hash & salt
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
@@ -21,5 +21,5 @@ userSchema.pre("save", async function (next) {
 
 // 
 
-const User1 = mongoose.model("User", userSchema);
-export default User1;
+const User = mongoose.model("User", userSchema);
+export default User;

@@ -1,17 +1,24 @@
-import User1 from "../models/users.js";
+import User from "../models/users.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { createError } from "../utils/error.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-// register
 export const register = async (req, res, next) => {
     try {
-        const newUser = new User1({
+        console.log("Request Body:", req.body); // 🔍 调试代码，检查是否收到数据
+
+        const { username, email, password, role } = req.body; // 确保 `role` 被解构出来
+
+        if (!username || !email || !password) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+        const newUser = new User({
             username: req.body.username,
             email: req.body.email,
             password: req.body.password, //
+            role: role && ["user", "admin"].includes(role) ? role : "user"
         });
 
         await newUser.save();
@@ -24,7 +31,7 @@ export const register = async (req, res, next) => {
 // login
 export const login = async (req, res, next) => {
     try {
-        const user1 = await User1.findOne({ username: req.body.username });
+        const user1 = await User.findOne({ username: req.body.username });
         if (!user1) return next(createError(404, "User not found"));
 
         // confirmation
@@ -41,7 +48,9 @@ export const login = async (req, res, next) => {
         );
 
         const { password, ...otherDetails } = user1.toObject();
-        res.status(200).json({ success: true, token: "BEARER " + token, user: otherDetails });
+        res.cookie("access_token",token,{
+            httpOnly:true,
+        }).status(200).json({ success: true, token: "BEARER " + token, user: otherDetails });
 
     } catch (err) {
         next(err);

@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 const ticketSchema = new mongoose.Schema(
     {
-      event: { type: mongoose.Schema.Types.ObjectId, ref: "Event", required: true }, // event
-      user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // customer
+      title: { type: mongoose.Schema.Types.ObjectId, ref: "Event", required: true }, // title of event
+
       price: { 
         type: Number, 
         required: true, 
@@ -55,7 +55,7 @@ const ticketSchema = new mongoose.Schema(
     { timestamps: true }
   );
   
-  const Ticket = mongoose.model('Ticket', ticketSchema);
+
   
   
 export default mongoose.model("Ticket", ticketSchema);
