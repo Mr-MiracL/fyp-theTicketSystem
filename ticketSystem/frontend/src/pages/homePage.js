@@ -4,6 +4,7 @@ import SearchBar from "../components/searchBar";
 import Category from "../components/category";
 import EventGrid from "../components/grids";
 import HelpCenter from "../components/helpCentre";
+import PopularGrid from "../components/popular/popularGrid";
 import "../styles/homepage.css"; 
 
 const HomePage = () => {
@@ -15,7 +16,7 @@ const HomePage = () => {
       <div className="main-content">
         <div className="left-content">
           <EventGrid title="Recommendations" />
-          <EventGrid title="Popular" />
+          <PopularGrid /> {/* 使用新的 Popular 组件 */}
         </div>
         <HelpCenter />
       </div>

@@ -1,0 +1,45 @@
+.popular-grid {
+    margin: 20px;
+  }
+  
+  .popular-cards {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+  }
+  
+  .popular-card {
+    width: 260px;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .popular-info {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .popular-info .price-tag {
+    color: yellow;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .popular-info button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
