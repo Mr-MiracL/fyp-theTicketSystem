@@ -6,6 +6,7 @@ import InitialPage from "./pages/initialPage.js";
 import React from 'react';
 import { AuthProvider } from "./context/authContext";
 
+import EventList from "./pages/eventList.jsx"
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/" element={<HomePage/>} />
-
+        <Route path="/category/:category" element={<EventList />} />
         
       </Routes>
     </Router>

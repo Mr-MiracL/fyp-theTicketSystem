@@ -52,10 +52,10 @@ export const getEvent= async (req,res, next)=>{
 
 export const getAllEvents= async (req,res, next)=>{
     try{
-        const allEvents=await events.find();
+        const allEvents=await events.find(req.query );
         
         res.status(200).json(allEvents);
-    
+   
       }catch(err){
        next(err)
         
@@ -91,3 +91,44 @@ export const countByCountry= async (req,res, next)=>{
     
 }
 }
+
+export const countByCategory= async (req,res, next)=>{
+    try{
+        const SportEvent=await events.countDocuments({type:"sport"})
+        const MusicEvent= await events.countDocuments({type:"music"})
+        const ConferenceEvent=await events.countDocuments({type:"conference"})
+        const TheaterEvent=await events.countDocuments({type:"theater"})
+        const OthersEvent =await events.countDocuments({type:"others"})
+
+        res.status(200).json([
+            {type: "sport", count: SportEvent},
+            {type: "music", count: MusicEvent},
+            {type: "conference", count: ConferenceEvent},
+            {type: "Therter", count: TheaterEvent},
+            {type: "others", count: OthersEvent},
+
+        ]);
+    
+      }catch(err){
+       next(err)
+    
+}
+}
+export const getEventDetail = async (req, res) => {
+    try {
+        const { category, name, date, country } = req.query;
+        let filter = {};
+
+        if (category) filter.category = category;
+        if (name) filter.name = { $regex: name, $options: "i" }; 
+        if (date) filter.date = { $gte: new Date(date) }; 
+        if (country) filter.country = country;
+
+        console.log("Filter:", filter);
+
+        const events = await events.find(filter);
+        res.status(200).json(events);
+    } catch (error) {
+        res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+};

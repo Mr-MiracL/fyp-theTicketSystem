@@ -1,0 +1,24 @@
+.event-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .event-card {
+    background: #eee;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .book-btn {
+    background: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

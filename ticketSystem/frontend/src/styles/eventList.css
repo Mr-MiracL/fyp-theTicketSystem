@@ -1,0 +1,56 @@
+.event-page {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.event-list {
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.event-card {
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    text-align: center;
+}
+
+.event-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.filter-panel {
+    width: 30%;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-panel h3 {
+    margin-bottom: 10px;
+}
+
+.filter-panel input,
+.filter-panel select,
+.filter-panel button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-panel button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}

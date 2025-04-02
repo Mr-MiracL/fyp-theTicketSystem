@@ -1,6 +1,6 @@
 import express from "express"
 
-import { createEvent, deleteEvent, getAllEvents, getEvent, updateEvent ,countByCountry, getPopularEvents} from "../controllers/eventController.js";
+import { createEvent, deleteEvent, getAllEvents, getEvent, updateEvent ,countByCountry, getPopularEvents, countByCategory, getEventDetail} from "../controllers/eventController.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 const eventRouter=express.Router();
@@ -15,6 +15,7 @@ eventRouter.get("/",getAllEvents)
 eventRouter.get("/countByCountry",countByCountry)
 eventRouter.get("/countByCategory",getAllEvents)
 eventRouter.get("/popular", getPopularEvents)
-
+eventRouter.get("/countByCategory", countByCategory)
+eventRouter.get("/details", getEventDetail);
 
 export default eventRouter;

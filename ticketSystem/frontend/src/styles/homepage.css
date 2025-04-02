@@ -41,3 +41,24 @@ body, html {
 }
 
 
+.category-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.category-card {
+    padding: 15px;
+    background: #f4f4f4;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    width: 150px;
+    transition: 0.3s;
+}
+
+.category-card:hover {
+    background: #ddd;
+}
