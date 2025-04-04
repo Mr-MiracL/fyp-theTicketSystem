@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./popularGrid.css"; // 确保样式被正确导入
+import "./popularGrid.css"; 
 
 const PopularEvents = () => {
   const [events, setEvents] = useState([]);

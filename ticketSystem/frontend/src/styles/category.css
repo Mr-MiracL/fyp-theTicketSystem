@@ -1,18 +1,28 @@
-.category-events {
-    padding: 20px;
-    text-align: center;
-}
-
-.event-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
 .event-card {
-    padding: 15px;
-    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    margin: 1rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .details-btn {
+    margin-top: 0.5rem;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
     border-radius: 8px;
-    background: white;
-}
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .details-btn:hover {
+    background-color: #0056b3;
+  }
+  
