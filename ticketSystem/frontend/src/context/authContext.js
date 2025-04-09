@@ -1,34 +1,60 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
-export const AuthContext = createContext();
+const InitialState = {
+ user: JSON.parse(localStorage.getItem("user")) || null,
+ loading: false,
+ error:null,
+ 
+};
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export const AuthContext = createContext(InitialState);
 
-  
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+const AuthReducer = (state, action) => {
+  switch (action.type) {
+    case "LOGIN_START":
+      return {
+        user: null,
+        loading: true,
+        error:null,
+      }
+      case "LOGIN_SUCCESS":
+        return {
+          user: action.payload,
+         loading: false,
+          error:null,
+        } 
+        case "LOGIN_FAILURE":
+        return {
+          user: null,
+         loading: false,
+       error: action.payload,
+        }
+        case "LOGOUT":
+          return {
+            user: null,
+           loading: false,
+         error: null,
+          }
+    default:
+      return state;
+  }
+};
 
-  
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
+export const AuthContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AuthReducer, InitialState);
 
-  
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-  };
+  useEffect(()=>{
+    localStorage.setItem("user", JSON.stringify(state.user))
+  },[state.user])
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ 
+      user: state.user, 
+      loading: state.loading,
+      error:  state.error,
+      dispatch, 
+      }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
