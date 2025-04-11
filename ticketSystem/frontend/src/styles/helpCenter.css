@@ -1,0 +1,35 @@
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .faq-container {
+    margin-top: 20px;
+  }
+  
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  .card-header {
+    background-color: #f5f5f5;
+    padding: 15px;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .sub-question-list {
+    padding: 10px 15px;
+    background-color: #fafafa;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .sub-question {
+    margin-bottom: 8px;
+  }
+  

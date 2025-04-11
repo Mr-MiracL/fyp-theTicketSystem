@@ -8,7 +8,8 @@ const EventDetail = () => {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/events/${id}`)
+    axios.get(`http://localhost:5000/api/events/find/${id}`)
+
       .then(res => setEvent(res.data))
       .catch(err => console.error("Error loading event detail:", err));
   }, [id]);
@@ -22,12 +23,12 @@ const EventDetail = () => {
       </div>
       <div className="event-info">
         <h1>{event.name}</h1>
-        <p><strong>🗓 日期：</strong>{new Date(event.date).toLocaleDateString()}</p>
-        <p><strong>📍 国家：</strong>{event.country}</p>
-        <p><strong>🎫 门票价格：</strong>${event.ticketPrice}</p>
-        <p><strong>剩余票数：</strong>{event.availableTickets}</p>
-        <p><strong>优惠：</strong>{event.discount ? `${event.discount}%` : "无"}</p>
-        <p><strong>类别：</strong>{event.category}</p>
+        <p><strong>🗓 Date:</strong>{new Date(event.date).toLocaleDateString()}</p>
+        <p><strong>📍 COuntry:</strong>{event.country}</p>
+        <p><strong>🎫 Price of the tickets:</strong>${event.ticketPrice}</p>
+        <p><strong>Remaining tickets:</strong>{event.availableTickets}</p>
+        <p><strong>Discount:</strong>{event.discount ? `${event.discount}%` : "无"}</p>
+        <p><strong>Categoty:</strong>{event.category}</p>
 
         {/* 你可以在这里扩展票型（如果有） */}
         <div className="ticket-types">

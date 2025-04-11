@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import AuthContext from "../context/authContext";
+import {AuthContext} from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ const LoginPage = () => {
     dispatch({ type: "LOGIN_STATE" });
 
     try {
-      const res = await axios.post("/auth/login", credentials);
+      const res = await axios.post("http://localhost:5000/api/auth/login", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
 
      
@@ -34,9 +34,11 @@ const LoginPage = () => {
       }
 
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      console.error("Login error:", err.response?.data || err.message);
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response?.data || { message: "登录失败" } });
     }
   };
+
 
   return (
     <div className="login-container">

@@ -6,9 +6,9 @@ const eventSchema = new mongoose.Schema({
     date: { type: Date, required: true },
     country: { type: String, required: true },
     ticketPrice: { type: Number, required: true },
-    availableTickets: { type: Number, required: true }, // 新增：剩余票数
-    discount: { type: Number, default: 0 }, // 新增：折扣
-    image: { type: String }, // 新增：活动图片 URL
+    availableTickets: { type: Number, required: true }, 
+    discount: { type: Number, default: 0 }, 
+    image: { type: String }, 
     category: { 
         type: String, 
         required: true, 
@@ -19,7 +19,7 @@ const eventSchema = new mongoose.Schema({
         enum: ['Upcoming', 'Ongoing', 'Completed', 'Cancelled'], 
         default: 'Upcoming'
     },
-    isPopular: { type: Boolean, default: false }, // 新增：是否为热门活动
+    isPopular: { type: Boolean, default: false }, 
     
     eventType: { type: String, enum: ['Online', 'Offline'], default: 'Offline' },
     createdAt: { type: Date, default: Date.now },
