@@ -24,8 +24,8 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      await axios.post("/auth/register", formData); 
-      navigate("/login"); // 注册成功跳转到登录页面
+      await axios.post("http://localhost:5000/api/auth/register", formData); 
+      navigate("/login"); 
     } catch (err) {
       setError(err.response?.data?.message || "registration failed, please try again");
     }

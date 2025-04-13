@@ -28,7 +28,6 @@ export const register = async (req, res, next) => {
     }
 };
 
-// login
 export const login = async (req, res, next) => {
     try {
         const user1 = await User.findOne({ username: req.body.username });
@@ -56,3 +55,4 @@ export const login = async (req, res, next) => {
         next(err);
     }
 };
+  

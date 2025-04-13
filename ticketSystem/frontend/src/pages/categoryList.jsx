@@ -50,7 +50,7 @@ const CategoryList = () => {
                 <h3>{event.name}</h3>
                 <p>{new Date(event.date).toDateString()} | {event.country}</p>
                 <p>Price: ${event.ticketPrice}</p>
-                {/* ✅ 加一个跳转按钮，而不是整张卡片都点击 */}
+               
                 <button 
                   className="details-btn" 
                   onClick={() => navigate(`/events/${event._id}`)}>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Navigation from "../components/navigation";
 import SearchBar from "../components/searchBar";
-import EventGrid from "../components/grids";
+
 import HelpCenter from "../components/helpCentre";
 import PopularGrid from "../components/popular/popularGrid";
 import CategoryList from "../components/categoryList";
@@ -21,7 +21,7 @@ const HomePage = () => {
       payload: { country, dates },
     });
 
-    navigate("/events/:id"); // 
+    navigate(`http://localhost:5000/api/events/find/:id`); 
   };
 
   return (
@@ -38,7 +38,7 @@ const HomePage = () => {
       
       <div className="main-content">
         <div className="left-content">
-          <EventGrid title="Recommendations" />
+          
           <PopularGrid />
         </div>
         <HelpCenter />
