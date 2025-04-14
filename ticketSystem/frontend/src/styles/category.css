@@ -1,28 +1,55 @@
-.event-card {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    padding: 1rem;
-    margin: 1rem;
-    transition: transform 0.2s ease;
-  }
+.category-container {
+  background-image: url('https://example.com/your-background-image.jpg'); /* 背景图片 */
+  background-size: cover;
+  background-position: center;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* 根据需要调整高度 */
+}
+
+.category-list {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  max-width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.category-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7); /* 半透明背景 */
+  border-radius: 10px;
+  padding: 20px 30px;
+  text-align: center;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
   
-  .event-card:hover {
-    transform: translateY(-3px);
+}
+
+.category-item:hover {
+  transform: scale(1.1); /* 放大效果 */
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #007bff; /* 鼠标悬停时改变颜色 */
+}
+
+.category-item span {
+  padding: 5px;
+}
+
+@media screen and (max-width: 768px) {
+  .category-list {
+      flex-direction: column;
+      gap: 20px;
   }
-  
-  .details-btn {
-    margin-top: 0.5rem;
-    padding: 8px 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+  .category-item {
+      padding: 15px 25px;
   }
-  
-  .details-btn:hover {
-    background-color: #0056b3;
-  }
-  
+}

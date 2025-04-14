@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../styles/category.css"; 
 
 const categories = [
     { name: "Music", path: "/category/Music" },
@@ -11,13 +12,14 @@ const categories = [
 
 const CategoryList = () => {
     return (
-        <div className="category-list">
-            {categories.map((category) => (
-                <Link key={category.name} to={category.path} className="category-item">
-                    <strong>{category.name}</strong> <br />
-                  
-                </Link>
-            ))}
+        <div className="category-container">
+            <div className="category-list">
+                {categories.map((category) => (
+                    <Link key={category.name} to={category.path} className="category-item">
+                        <span>{category.name}</span>
+                    </Link>
+                ))}
+            </div>
         </div>
     );
 };

@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
-import "../../styles/addEventForm.css";
+//import "../../styles/addEventForm.css";
 
-const AddEventForm = ({ onAdd }) => {
+const AddEventForm = ({ setEvents, onClose }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -15,10 +14,23 @@ const AddEventForm = ({ onAdd }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onAdd(formData);
-    setFormData({ title: "", description: "", date: "", location: "" });
+    try {
+      const response = await fetch("http://localhost:5000/api/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const newEvent = await response.json();
+      setEvents((prev) => [...prev, newEvent]);
+      setFormData({ title: "", description: "", date: "", location: "" });
+      onClose(); // 提交成功后关闭表单
+    } catch (error) {
+      console.error("Add event failed:", error);
+    }
   };
 
   return (

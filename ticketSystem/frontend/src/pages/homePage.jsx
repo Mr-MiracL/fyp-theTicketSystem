@@ -35,7 +35,7 @@ const HomePage = () => {
         setDates={setDates} 
         onSearch={handleSearch} 
       />
-      
+     
       <div className="main-content">
         <div className="left-content">
           
