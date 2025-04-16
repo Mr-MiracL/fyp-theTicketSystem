@@ -1,0 +1,51 @@
+.ticket-type-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px;
+    margin: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .ticket-type-card:hover {
+    transform: translateY(-10px); /* 鼠标悬停时上移 */
+  }
+  
+  .ticket-type-card h4 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .ticket-type-card p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .ticket-type-card p strong {
+    color: #333;
+  }
+  
+  .ticket-type-card .book-now {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .ticket-type-card .book-now:hover {
+    background-color: #0056b3; /* 悬停时的颜色变化 */
+  }
+  
+  .ticket-type-card .book-now:active {
+    background-color: #003d80; /* 按钮点击时的颜色变化 */
+  }
+  

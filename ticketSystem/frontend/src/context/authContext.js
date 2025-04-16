@@ -1,8 +1,8 @@
-
-import { createContext, useReducer } from "react";
+// context/authContext.js
+import { createContext, useReducer, useEffect } from "react";
 
 const INITIAL_STATE = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   loading: false,
   error: null,
 };
@@ -14,10 +14,15 @@ const AuthReducer = (state, action) => {
     case "LOGIN_STATE":
       return { user: null, loading: true, error: null };
     case "LOGIN_SUCCESS":
+      const expiryTime = new Date().getTime() + 30 * 60 * 1000; // 30分钟
+      localStorage.setItem("user", JSON.stringify(action.payload));
+      localStorage.setItem("expiry", expiryTime);
       return { user: action.payload, loading: false, error: null };
     case "LOGIN_FAILURE":
       return { user: null, loading: false, error: action.payload };
     case "LOGOUT":
+      localStorage.removeItem("user");
+      localStorage.removeItem("expiry");
       return { user: null, loading: false, error: null };
     default:
       return state;
@@ -26,6 +31,19 @@ const AuthReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
+
+  // 自动检查登录状态是否过期
+  useEffect(() => {
+    const checkExpiry = () => {
+      const expiry = localStorage.getItem("expiry");
+      if (expiry && new Date().getTime() > parseInt(expiry)) {
+        dispatch({ type: "LOGOUT" });
+      }
+    };
+    checkExpiry();
+    const interval = setInterval(checkExpiry, 60 * 1000); // 每分钟检查一次
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <AuthContext.Provider

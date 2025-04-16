@@ -1,24 +1,23 @@
-
 .back-to-home {
-    background-color: #ff6347;
-    padding: 12px 30px;
-    border-radius: 25px;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-  }
-  
-  .back-to-home:hover {
-    background-color: #ff4500;
-  }
-  
-  .home-icon {
-    margin-right: 8px;
-    font-size: 22px;
-  }
-  
+  background-color: #ff6347;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.back-to-home:hover {
+  background-color: #ff4500;
+}
+
+.home-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}

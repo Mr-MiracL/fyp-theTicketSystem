@@ -5,7 +5,8 @@ import HomePage from './pages/homePage.jsx';
 
 import AdminDashboard from "./pages/adminPage.jsx";
 import SearchResults from "./pages/searchPage.jsx";
-import React from 'react';
+import React from 'react'
+import Payment from "./pages/paymentPage.jsx";
 import { AuthContextProvider } from "./context/authContext.js";
 import EventDetail from "./pages/EventDetail.jsx";
 import EventList from "./pages/categoryList.jsx"
@@ -30,6 +31,7 @@ function App() {
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/search-results" element={<SearchResults />} />
               <Route path="/helpCenter" element={<HelpCenter />} />
+              <Route path="/payment/:ticketId" element={<Payment />} />
             </Route>
           </Routes>
         </Router>

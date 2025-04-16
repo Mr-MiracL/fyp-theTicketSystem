@@ -3,10 +3,7 @@ import "../../styles/adminEventList.css";
 
 const AdminEventList = ({ events, setEvents }) => {
   const [editingEvent, setEditingEvent] = useState(null);
-  const [editData, setEditData] = useState({
-    name: "",
-    date: "",
-  });
+  const [editData, setEditData] = useState({});
 
   const handleDelete = async (id) => {
     try {
@@ -23,7 +20,17 @@ const AdminEventList = ({ events, setEvents }) => {
     setEditingEvent(event);
     setEditData({
       name: event.name || "",
-      date: new Date(event.date).toISOString().split("T")[0],
+      date: event.date ? new Date(event.date).toISOString().split("T")[0] : "",
+      description: event.description || "",
+      country: event.country || "",
+      ticketPrice: event.ticketPrice || 0,
+      availableTickets: event.availableTickets || 0,
+      discount: event.discount || 0,
+      image: event.image || "",
+      category: event.category || "",
+      status: event.status || "Upcoming",
+      isPopular: event.isPopular || false,
+      eventType: event.eventType || "Offline",
     });
   };
 
@@ -32,8 +39,11 @@ const AdminEventList = ({ events, setEvents }) => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setEditData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleSave = async () => {
@@ -41,31 +51,24 @@ const AdminEventList = ({ events, setEvents }) => {
       const res = await fetch(`http://localhost:5000/api/events/${editingEvent._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: editData.name,
-          date: editData.date,
-        }),
+        body: JSON.stringify(editData),
       });
-  
+
       if (!res.ok) {
         throw new Error("Failed to update event");
       }
-  
+
       const updated = await res.json();
-  
-      // 用新的事件数据替换原有的对应事件
       setEvents((prev) =>
         prev.map((ev) => (ev._id === updated._id ? updated : ev))
       );
-  
       closeEditModal();
     } catch (err) {
       console.error("Update failed:", err);
       alert("Failed to update event");
     }
   };
-  
-  
+
   return (
     <div className="event-list-container">
       <table className="event-table">
@@ -98,27 +101,43 @@ const AdminEventList = ({ events, setEvents }) => {
         <div className="modal-overlay">
           <div className="modal-content">
             <h3>Edit Event</h3>
-            <label>
-              Title:
-              <input
-                type="text"
-                name="name"
-                value={editData.name}
-                onChange={handleChange}
-              />
+            <label>Title:<input name="name" value={editData.name} onChange={handleChange} /></label>
+            <label>Description:<textarea name="description" value={editData.description} onChange={handleChange} /></label>
+            <label>Date:<input type="date" name="date" value={editData.date} onChange={handleChange} /></label>
+            <label>Country:<input name="country" value={editData.country} onChange={handleChange} /></label>
+            <label>Ticket Price:<input type="number" name="ticketPrice" value={editData.ticketPrice} onChange={handleChange} /></label>
+            <label>Available Tickets:<input type="number" name="availableTickets" value={editData.availableTickets} onChange={handleChange} /></label>
+            <label>Discount:<input type="number" name="discount" value={editData.discount} onChange={handleChange} /></label>
+            <label>Image URL:<input name="image" value={editData.image} onChange={handleChange} /></label>
+            <label>Category:
+              <select name="category" value={editData.category} onChange={handleChange}>
+                <option value="Music">Music</option>
+                <option value="Sports">Sports</option>
+                <option value="Theater">Theater</option>
+                <option value="Conference">Conference</option>
+                <option value="Others">Others</option>
+              </select>
             </label>
-            <label>
-              Date:
-              <input
-                type="date"
-                name="date"
-                value={editData.date}
-                onChange={handleChange}
-              />
+            <label>Status:
+              <select name="status" value={editData.status} onChange={handleChange}>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </label>
+            <label>Is Popular:
+              <input type="checkbox" name="isPopular" checked={editData.isPopular} onChange={handleChange} />
+            </label>
+            <label>Event Type:
+              <select name="eventType" value={editData.eventType} onChange={handleChange}>
+                <option value="Online">Online</option>
+                <option value="Offline">Offline</option>
+              </select>
             </label>
             <div className="modal-buttons">
-              <button onClick={handleSave} className="save-btn">Save</button>
-              <button onClick={closeEditModal} className="cancel-btn">Cancel</button>
+              <button className="save-btn" onClick={handleSave}>Save</button>
+              <button className="cancel-btn" onClick={closeEditModal}>Cancel</button>
             </div>
           </div>
         </div>

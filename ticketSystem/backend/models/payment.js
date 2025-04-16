@@ -1,14 +1,33 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const paymentSchema = new mongoose.Schema(
-  {
-    order: { type: mongoose.Schema.Types.ObjectId, ref: "Order", required: true }, // connection with other orders
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // cstomer
-    amount: { type: Number, required: true }, // price
-    status: { type: String, enum: ["pending", "completed", "failed"], default: "pending" }, // statement
-    paymentMethod: { type: String, required: true }, // way user choose to pay
+const paymentSchema = new mongoose.Schema({
+  order: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order',
+    required: true,
   },
-  { timestamps: true }
-);
+  paymentMethod: {
+    type: String,
+    enum: ['credit_card', 'paypal', 'bank_transfer'],
+    required: true,
+  },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  paymentStatus: {
+    type: String,
+    enum: ['pending', 'completed', 'failed'],
+    default: 'pending',
+  },
+  transactionId: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-export default mongoose.model("Payment", paymentSchema);
+export default mongoose.model('Payment', paymentSchema);

@@ -1,94 +1,87 @@
 .event-list-container {
   padding: 20px;
+  overflow-x: auto;
 }
 
 .event-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
-  background: white;
 }
 
 .event-table th,
 .event-table td {
-  padding: 10px 15px;
+  padding: 10px;
   border: 1px solid #ccc;
   text-align: left;
 }
 
-.edit-btn, .delete-btn {
-  margin-right: 8px;
+.edit-btn,
+.delete-btn {
+  margin-right: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  border: none;
-  border-radius: 4px;
 }
 
-.edit-btn {
-  background-color: #007bff;
-  color: white;
-}
-
-.delete-btn {
-  background-color: #dc3545;
-  color: white;
-}
-
-/* Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+  z-index: 1000;
 }
 
 .modal-content {
   background: white;
-  padding: 25px;
-  border-radius: 10px;
-  width: 350px;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .modal-content label {
-  display: block;
-  margin-bottom: 15px;
-  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
 }
 
-.modal-content input {
-  width: 100%;
-  padding: 6px 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  padding: 6px;
+  margin-top: 4px;
   border-radius: 4px;
+  border: 1px solid #aaa;
 }
 
 .modal-buttons {
+  margin-top: 20px;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
-.save-btn {
-  background-color: #28a745;
-  color: white;
-  padding: 6px 14px;
+.save-btn,
+.cancel-btn {
+  padding: 8px 16px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  border-radius: 4px;
+}
+
+.save-btn {
+  background-color: #4CAF50;
+  color: white;
 }
 
 .cancel-btn {
-  background-color: #6c757d;
-  color: white;
-  padding: 6px 14px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  background-color: #ccc;
 }

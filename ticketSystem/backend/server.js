@@ -5,8 +5,8 @@ import dotenv from "dotenv";
 import authRouter from "./router/authRoute.js"; 
 import eventRouter from "./router/eventRoute.js";
 import userRouter from "./router/userRoute.js";
-//import orderRoutes from "./router/orderRoute.js";
-//import paymentRoutes from "./router/paymentRoute.js";
+import orderRoutes from "./router/orderRoute.js";
+import paymentRoutes from "./router/paymentRoute.js";
 import ticketRoutes from "./router/ticketRoute.js";
 import cookieParser from "cookie-parser";
 const app = express();
@@ -36,8 +36,8 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true })); 
 app.use("/api/auth", authRouter);  
 app.use("/api/tickets", ticketRoutes);
-//app.use("/api/orders", orderRoutes);
-//app.use("/api/payment", paymentRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/payment", paymentRoutes);
 app.use("/api/events", eventRouter);
 app.use("/api/users",userRouter)
 app.use((err,req,res,next)=>{

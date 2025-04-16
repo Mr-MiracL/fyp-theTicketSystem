@@ -1,8 +1,8 @@
-import events from "../models/events.js"
+import Event from "../models/events.js"
 
 
 export const createEvent= async (req,res, next)=>{
-    const newEvent=new events(req.body)
+    const newEvent=new Event(req.body)
         try{
             const savedEvent= await newEvent.save()
             res.status(200).json(savedEvent)
@@ -15,7 +15,7 @@ export const createEvent= async (req,res, next)=>{
 export const updateEvent= async (req,res, next)=>{
     
         try{
-            const updateEvent= await events.findByIdAndUpdate(
+            const updateEvent= await Events.findByIdAndUpdate(
                 req.params.id,
                 {$set:req.body},
                 {new:true}
@@ -31,7 +31,7 @@ export const updateEvent= async (req,res, next)=>{
 export const deleteEvent= async (req,res, next)=>{
     
         try{
-           await events.findByIdAndDelete(req.params.id)
+           await Event.findByIdAndDelete(req.params.id)
             res.status(200).json("event has been deleted")
         }catch(err){
             next(err);
@@ -42,7 +42,7 @@ export const deleteEvent= async (req,res, next)=>{
 export const getEvent= async (req,res, next)=>{
     
         try{
-            const Event1= await events.findById(req.params.id)
+            const Event1= await Event.findById(req.params.id)
             res.status(200).json(Event1)
         }catch(err){
             next(err);
@@ -52,7 +52,7 @@ export const getEvent= async (req,res, next)=>{
 
 export const getAllEvents= async (req,res, next)=>{
     try{
-        const allEvents=await events.find(req.query );
+        const allEvents=await Event.find(req.query );
         
         res.status(200).json(allEvents);
    
@@ -65,7 +65,7 @@ export const getAllEvents= async (req,res, next)=>{
 export const getPopularEvents = async (req, res, next) => {
     try {
         
-        const popularEvents = await events.find({ isPopular: true })
+        const popularEvents = await Event.find({ isPopular: true })
             .select("name date country ticketPrice availableTickets discount image");
 
         res.status(200).json(popularEvents);
@@ -79,7 +79,7 @@ export const countByCountry= async (req,res, next)=>{
     const countries= req.query.countries.sqlit(",")
     try{
        const list = await Promise.all(countries.map(country=>{
-        return events.countDocuments({
+        return Event.countDocuments({
             country:country
         })
        }))
@@ -94,11 +94,11 @@ export const countByCountry= async (req,res, next)=>{
 
 export const countByCategory= async (req,res, next)=>{
     try{
-        const SportEvent=await events.countDocuments({type:"sport"})
-        const MusicEvent= await events.countDocuments({type:"music"})
-        const ConferenceEvent=await events.countDocuments({type:"conference"})
-        const TheaterEvent=await events.countDocuments({type:"theater"})
-        const OthersEvent =await events.countDocuments({type:"others"})
+        const SportEvent=await Event.countDocuments({type:"sport"})
+        const MusicEvent= await Event.countDocuments({type:"music"})
+        const ConferenceEvent=await Event.countDocuments({type:"conference"})
+        const TheaterEvent=await Event.countDocuments({type:"theater"})
+        const OthersEvent =await Event.countDocuments({type:"others"})
 
         res.status(200).json([
             {type: "sport", count: SportEvent},
@@ -126,8 +126,8 @@ export const getEventDetail = async (req, res) => {
 
         console.log("Filter:", filter);
 
-        const events = await events.find(filter);
-        res.status(200).json(events);
+        const events1 = await Event.find(filter);
+        res.status(200).json(events1);
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }

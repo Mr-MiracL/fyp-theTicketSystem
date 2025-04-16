@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import Navigation from "../components/navigation";
+
 import SearchBar from "../components/searchBar";
 
 import HelpCenter from "../components/helpCentre";
@@ -26,7 +26,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      <Navigation />
+      
       <CategoryList />
       <SearchBar 
         country={country} 
