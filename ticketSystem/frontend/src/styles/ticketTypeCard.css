@@ -9,7 +9,7 @@
   }
   
   .ticket-type-card:hover {
-    transform: translateY(-10px); /* 鼠标悬停时上移 */
+    transform: translateY(-10px); 
   }
   
   .ticket-type-card h4 {
@@ -42,10 +42,10 @@
   }
   
   .ticket-type-card .book-now:hover {
-    background-color: #0056b3; /* 悬停时的颜色变化 */
+    background-color: #0056b3; 
   }
   
   .ticket-type-card .book-now:active {
-    background-color: #003d80; /* 按钮点击时的颜色变化 */
+    background-color: #003d80; 
   }
   

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";  // 导入 useNavigate
-import "./popularGrid.css"; 
+import { useNavigate } from "react-router-dom"; 
+import "../styles/popularGrid.css"; 
 
 const PopularEvents = () => {
   const [events, setEvents] = useState([]);
-  const navigate = useNavigate();  // 使用 navigate hook
+  const navigate = useNavigate();  
 
   useEffect(() => {
     axios
@@ -14,7 +14,7 @@ const PopularEvents = () => {
       .catch((error) => console.error("Error fetching events:", error));
   }, []);
 
-  // 跳转到 eventdetail 页面
+
   const handleViewEventDetail = (id) => {
     navigate(`events/${id}`); 
   };
@@ -27,9 +27,7 @@ const PopularEvents = () => {
           <div key={event._id} className="event-card">
             <h3>{event.name}</h3>
             <p>{new Date(event.date).toDateString()} | {event.country}</p>
-            <p><strong className="price">${event.ticketPrice}</strong></p>
-            <p>Available Tickets: <span className="tickets">{event.availableTickets}</span></p>
-            <p>Discount: <span className="discount">{event.discount}%</span></p>
+           
             <button className="book-btn" onClick={() => handleViewEventDetail(event._id)}>
               View Details
             </button>

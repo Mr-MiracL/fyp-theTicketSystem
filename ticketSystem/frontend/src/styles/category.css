@@ -1,12 +1,12 @@
 .category-container {
-  background-image: url('https://example.com/your-background-image.jpg'); /* 背景图片 */
+  background-image: url('https://example.com/your-background-image.jpg'); 
   background-size: cover;
   background-position: center;
   padding: 50px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px; /* 根据需要调整高度 */
+  height: 300px; 
 }
 
 .category-list {
@@ -22,7 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.7); /* 半透明背景 */
+  background-color: rgba(255, 255, 255, 0.7); 
   border-radius: 10px;
   padding: 20px 30px;
   text-align: center;
@@ -35,9 +35,9 @@
 }
 
 .category-item:hover {
-  transform: scale(1.1); /* 放大效果 */
+  transform: scale(1.1); 
   background-color: rgba(255, 255, 255, 0.9);
-  color: #007bff; /* 鼠标悬停时改变颜色 */
+  color: #007bff; 
 }
 
 .category-item span {

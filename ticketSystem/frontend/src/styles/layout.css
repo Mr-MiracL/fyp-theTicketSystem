@@ -1,4 +1,4 @@
-/* layout.css */
+
 .layout-container {
   display: flex;
   flex-direction: column;
@@ -6,7 +6,7 @@
 }
 
 .layout-header {
-  background-color: #333;
+  background-color: red;
   color: white;
   padding: 12px 20px;
   display: flex;
@@ -108,7 +108,7 @@
   overflow-y: auto;
 }
 
-/* 弹窗样式 */
+
 .logout-modal-overlay {
   position: fixed;
   top: 0;

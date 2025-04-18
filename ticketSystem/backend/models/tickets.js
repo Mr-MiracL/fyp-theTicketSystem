@@ -5,7 +5,7 @@ const ticketSchema = new mongoose.Schema(
     event: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Event",
-      required: true, // 必填项，表示属于哪个活动
+      required: true, 
     },
     price: {
       type: Number,
@@ -43,7 +43,7 @@ const ticketSchema = new mongoose.Schema(
       required: false,
       default: function () {
         const now = new Date();
-        now.setDate(now.getDate() + 7); // 默认 7 天后失效
+        now.setDate(now.getDate() + 7); 
         return now;
       }
     },

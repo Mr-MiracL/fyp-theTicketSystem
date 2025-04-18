@@ -1,0 +1,121 @@
+.order-page-container {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .order-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+  
+  .filter-container input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .order-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .order-card:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .order-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .order-info p {
+    margin: 0.25rem 0;
+  }
+  
+  .details-toggle {
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  
+  .details-toggle:hover {
+    background-color: #0056b3;
+  }
+  
+  .order-details {
+    margin-top: 1rem;
+    border-top: 1px dashed #ccc;
+    padding-top: 1rem;
+  }
+  
+  .ticket-info {
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+  }
+  
+  .no-orders {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+  }
+  .reset-btn {
+    padding: 0.5rem 1rem;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .reset-btn:hover {
+    background-color: #5a6268;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  
+  .page-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #007bff;
+    background-color: white;
+    color: #007bff;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .page-btn.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .page-btn:hover {
+    background-color: #0056b3;
+    color: white;
+  }
+  

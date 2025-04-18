@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/loginPage.jsx";
 import RegisterPage from "./pages/registerPage.jsx";
 import HomePage from './pages/homePage.jsx';
-
+import OrderPage from "./pages/orderPage.jsx";
 import AdminDashboard from "./pages/adminPage.jsx";
 import SearchResults from "./pages/searchPage.jsx";
 import React from 'react'
@@ -32,6 +32,7 @@ function App() {
               <Route path="/search-results" element={<SearchResults />} />
               <Route path="/helpCenter" element={<HelpCenter />} />
               <Route path="/payment/:ticketId" element={<Payment />} />
+              <Route path="/orderPage" element={<OrderPage />} />
             </Route>
           </Routes>
         </Router>

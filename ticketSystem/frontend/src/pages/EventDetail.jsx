@@ -8,20 +8,17 @@ const EventDetail = () => {
   const { id } = useParams();
 
   const [event, setEvent] = useState(null);
-  const [tickets, setTickets] = useState([]); // 确保初始化为空数组
+  const [tickets, setTickets] = useState([]);
 
-  // 获取活动详情
   useEffect(() => {
     axios.get(`http://localhost:5000/api/events/find/${id}`)
       .then(res => setEvent(res.data))
       .catch(err => console.error("Error loading event detail:", err));
   }, [id]);
 
-  // 获取票务信息
   useEffect(() => {
     axios.get(`http://localhost:5000/api/tickets/tickets/${id}`)
       .then(res => {
-        console.log("Tickets data:", res.data);  // 调试输出
         if (Array.isArray(res.data)) {
           setTickets(res.data);
         } else {
@@ -30,7 +27,6 @@ const EventDetail = () => {
       })
       .catch(err => console.error("Error loading ticket details:", err));
   }, [id]);
-  
 
   if (!event) return <p>Loading event details...</p>;
 
@@ -43,14 +39,13 @@ const EventDetail = () => {
         <h1>{event.name}</h1>
         <p><strong>🗓 Date:</strong>{new Date(event.date).toLocaleDateString()}</p>
         <p><strong>📍 Country:</strong>{event.country}</p>
-        <p><strong>🎫 Price of the tickets:</strong>${event.ticketPrice}</p>
-        <p><strong>Remaining tickets:</strong>{event.availableTickets}</p>
-        <p><strong>Discount:</strong>{event.discount ? `${event.discount}%` : "None"}</p>
-        <p><strong>Category:</strong>{event.category}</p>
+        <p><strong>🎭 Category:</strong>{event.category}</p>
+        <p><strong>🌍 Event Type:</strong>{event.eventType}</p>
+        <p><strong>🔥 Popular:</strong>{event.isPopular ? "Yes" : "No"}</p>
 
         <div className="ticket-types">
           <h3>🪪 Ticket Types</h3>
-          {/* 渲染每个票型卡片 */}
+        
           {tickets && tickets.length > 0 ? (
             tickets.map(ticket => (
               <TicketTypeCard

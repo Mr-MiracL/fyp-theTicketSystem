@@ -1,0 +1,30 @@
+.user-list {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .user-list h2 {
+    margin-bottom: 16px;
+  }
+  
+  .user-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-list th,
+  .user-list td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-list select,
+  .user-list button {
+    padding: 6px 10px;
+    margin-right: 5px;
+  }
+  

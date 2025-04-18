@@ -15,7 +15,7 @@ export const createEvent= async (req,res, next)=>{
 export const updateEvent= async (req,res, next)=>{
     
         try{
-            const updateEvent= await Events.findByIdAndUpdate(
+            const updateEvent= await Event.findByIdAndUpdate(
                 req.params.id,
                 {$set:req.body},
                 {new:true}

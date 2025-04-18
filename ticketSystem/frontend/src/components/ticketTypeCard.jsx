@@ -7,7 +7,7 @@ const TicketTypeCard = ({ type, price, description, area, availableTickets, tick
 
   const handleBookNowClick = () => {
     if (ticketId) {
-      navigate(`/payment/${ticketId}`); // ✅ 动态替换变量
+      navigate(`/payment/${ticketId}`); 
     } else {
       console.error("Ticket ID is missing!");
     }

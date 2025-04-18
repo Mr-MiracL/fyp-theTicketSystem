@@ -20,7 +20,7 @@ const LoginPage = () => {
     try {
       const res = await axios.post("http://localhost:5000/api/auth/login", credentials);
   
-      // ✅ 从 res.data 解构
+      
       const { user, token } = res.data;
   
       if (!user || !user.role || !token) {
@@ -28,7 +28,7 @@ const LoginPage = () => {
       }
   
       dispatch({ type: "LOGIN_SUCCESS", payload: { ...user, token } });
-  
+      localStorage.getItem("token")
       toast.success(`Welcome back, ${user.username}!`);
   
       if (user.role.toLowerCase() === "admin") {
@@ -41,7 +41,7 @@ const LoginPage = () => {
       console.error("Login error:", err.response?.data || err.message);
       dispatch({
         type: "LOGIN_FAILURE",
-        payload: err.response?.data || { message: "登录失败，请检查用户名和密码" },
+        payload: err.response?.data || { message: "Login failed, check your username and password again please" },
       });
     }
   };

@@ -1,26 +1,40 @@
-
 import React, { useEffect, useState } from "react";
 import EventList from "../components/admin/adminEventList";
-
+import UserList from "../components/admin/adminUserList";
+import AddEventModal from "../components/admin/addEvent";
 import axios from "axios";
 import "../styles/adminPage.css";
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState(null); // 'events' | 'users' | 'stats'
+  const [activeTab, setActiveTab] = useState(null);
   const [events, setEvents] = useState([]);
-  const [search, setSearch] = useState("");
-
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [showAddModal, setShowAddModal] = useState(false);
 
   useEffect(() => {
     if (activeTab === "events") {
-      axios.get("http://localhost:5000/api/events")
-        .then((res) => {
-          
-          setEvents(res.data)})
-        
-        .catch((err) => console.error("Failed to fetch events:", err));
+      fetchEvents();
     }
   }, [activeTab]);
+
+  const fetchEvents = () => {
+    axios
+      .get("http://localhost:5000/api/events")
+      .then((res) => {
+        setEvents(res.data);
+        setFilteredEvents(res.data);
+      })
+      .catch((err) => console.error("Failed to fetch events:", err));
+  };
+
+  const handleAddEvent = () => {
+    setShowAddModal(true);
+  };
+
+  const handleEventAdded = (newEvent) => {
+    const updatedEvents = [...events, newEvent];
+    setEvents(updatedEvents);
+  };
 
   return (
     <div className="admin-container">
@@ -47,26 +61,25 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* 内容区域 */}
       {activeTab === "events" && (
         <div className="admin-section">
           <div className="admin-controls">
-          
-            <input
-              type="text"
-              placeholder="Search by title"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <button className="add-event-btn" onClick={handleAddEvent}>
+              Add Event
+            </button>
           </div>
-       
-          <EventList
-            events={events}
-            setEvents={setEvents}
-            search={search}
+
+          <EventList events={filteredEvents} setEvents={setEvents} />
+
+          <AddEventModal
+            isOpen={showAddModal}
+            onClose={() => setShowAddModal(false)}
+            onEventAdded={handleEventAdded}
           />
         </div>
       )}
+
+      {activeTab === "users" && <UserList />}
     </div>
   );
 };

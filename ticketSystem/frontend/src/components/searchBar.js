@@ -1,28 +1,28 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // 使用 React Router 实现页面跳转
+import { useNavigate } from "react-router-dom"; 
 import "../styles/searchBar.css"; 
 
 const SearchBar = () => {
   const [country, setCountry] = useState("");
   const [dates, setDates] = useState({ startDate: "", endDate: "" });
 
-  const [keyword, setKeyword] = useState("");  // 新增：关键词搜索
+  const [keyword, setKeyword] = useState("");  
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    // 构建查询字符串：排除未填写的条件
+    
     let searchParams = "?";
     
     if (country) searchParams += `country=${country}&`;
     if (dates.startDate) searchParams += `startDate=${dates.startDate}&`;
     if (dates.endDate) searchParams += `endDate=${dates.endDate}&`;
   
-    if (keyword) searchParams += `keyword=${keyword}&`; // 添加关键词参数
+    if (keyword) searchParams += `keyword=${keyword}&`; 
 
-    // 去除末尾多余的 `&`
+
     searchParams = searchParams.slice(0, -1);
 
-    // 使用 navigate 跳转到搜索结果页面，并传递搜索条件
+
     navigate(`/search-results${searchParams}`);
   };
 

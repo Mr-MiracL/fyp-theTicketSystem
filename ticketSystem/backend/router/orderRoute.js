@@ -3,15 +3,19 @@ import {
   createOrder,
   getOrdersByUser,
   getUserOrderById,
+  deleteUserOrder,
 } from '../controllers/orderController.js';
+import { verifyToken } from '../utils/verifyToken.js';
 
 const router = express.Router();
 
 
-router.post('/orders', createOrder);
+router.post('/', createOrder);
 
-router.get('/orders/user/:userid', getOrdersByUser);
+router.get('/user/:userid', getOrdersByUser);
 
-router.get('/orders/user/:userid/:orderid', getUserOrderById);
+router.get('/user/:userid/:orderid', getUserOrderById);
+router.delete("/:userid/:orderid", verifyToken, deleteUserOrder);
+
 
 export default router;

@@ -80,7 +80,6 @@ export const getAllTickets= async (req,res, next)=>{
 export const getTicketsByEvent = async (req, res, next) => {
   const eventId = req.params.eventid;
 
-  // 确保 eventId 是有效的 ObjectId
   if (!mongoose.Types.ObjectId.isValid(eventId)) {
     return res.status(400).json({ message: "Invalid Event ID" });
   }

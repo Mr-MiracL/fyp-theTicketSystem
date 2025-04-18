@@ -13,8 +13,7 @@ const CategoryList = () => {
     const [startDate, setStartDate] = useState("");  
     const [endDate, setEndDate] = useState("");  
     const [selectedCountry, setSelectedCountry] = useState("");  
-    const [minPrice, setMinPrice] = useState("");  
-    const [maxPrice, setMaxPrice] = useState("");  
+    
     const navigate = useNavigate();
 
   
@@ -34,12 +33,11 @@ const CategoryList = () => {
             event.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
             (startDate ? new Date(event.date) >= new Date(startDate) : true) &&
             (endDate ? new Date(event.date) <= new Date(endDate) : true) &&
-            (selectedCountry ? event.country.toLowerCase() === selectedCountry.toLowerCase() : true) &&
-            (minPrice ? event.ticketPrice >= parseFloat(minPrice) : true) &&
-            (maxPrice ? event.ticketPrice <= parseFloat(maxPrice) : true)
+            (selectedCountry ? event.country.toLowerCase() === selectedCountry.toLowerCase() : true) 
+           
         );
         setFilteredEvents(filtered);
-    }, [searchTerm, startDate, endDate, selectedCountry, minPrice, maxPrice, events]);  
+    }, [searchTerm, startDate, endDate, selectedCountry,  events]);  
 
     return (
         <div className="event-page">
@@ -49,7 +47,7 @@ const CategoryList = () => {
                 <img src={event.image} alt={event.name} className="event-image" />
                 <h3>{event.name}</h3>
                 <p>{new Date(event.date).toDateString()} | {event.country}</p>
-                <p>Price: ${event.ticketPrice}</p>
+             
                
                 <button 
                   className="details-btn" 
@@ -64,7 +62,7 @@ const CategoryList = () => {
             <div className="filter-panel">
                 <h3>Search Events</h3>
                 
-                {/* search box */}
+                
                 <input
                     type="text"
                     placeholder="search event title"
@@ -72,7 +70,7 @@ const CategoryList = () => {
                     onChange={e => setSearchTerm(e.target.value)}
                 />
 
-                {/* filter date */}
+                
                 <label>start Date</label>
                 <input
                     type="date"
@@ -87,7 +85,7 @@ const CategoryList = () => {
                     onChange={e => setEndDate(e.target.value)}
                 />
 
-                {/* filter country*/}
+             
                 <select
                     value={selectedCountry}
                     onChange={e => setSelectedCountry(e.target.value)}
@@ -99,31 +97,13 @@ const CategoryList = () => {
                     <option value="Netherlands">Netherlands</option>
                 </select>
 
-                {/* filter price */}
-                <label>Lowest Price</label>
-                <input
-                    type="number"
-                    placeholder="Lowest Price"
-                    value={minPrice}
-                    onChange={e => setMinPrice(e.target.value)}
-                />
-
-                <label>Highest Price</label>
-                <input
-                    type="number"
-                    placeholder="Highest Price"
-                    value={maxPrice}
-                    onChange={e => setMaxPrice(e.target.value)}
-                />
-
-                {/* reset */}
+                
+        
                 <button onClick={() => {
                     setSearchTerm("");
                     setStartDate("");
                     setEndDate("");
                     setSelectedCountry("");
-                    setMinPrice("");
-                    setMaxPrice("");
                 }}>Reset</button>
             </div>
         </div>

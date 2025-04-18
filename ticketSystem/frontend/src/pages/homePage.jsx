@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import SearchBar from "../components/searchBar";
 
 import HelpCenter from "../components/helpCentre";
-import PopularGrid from "../components/popular/popularGrid";
+import PopularGrid from "../components/popularGrid";
 import CategoryList from "../components/categoryList";
 import { SearchContext } from "../context/searchContext";
 import { useNavigate } from "react-router-dom";

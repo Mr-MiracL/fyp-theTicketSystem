@@ -7,9 +7,9 @@ dotenv.config();
 
 export const register = async (req, res, next) => {
     try {
-        console.log("Request Body:", req.body); // 🔍 调试代码，检查是否收到数据
+        console.log("Request Body:", req.body);
 
-        const { username, email, password, role } = req.body; // 确保 `role` 被解构出来
+        const { username, email, password, role } = req.body;
 
         if (!username || !email || !password) {
             return res.status(400).json({ error: "Missing required fields" });
@@ -33,26 +33,28 @@ export const login = async (req, res, next) => {
         const user1 = await User.findOne({ username: req.body.username });
         if (!user1) return next(createError(404, "User not found"));
 
-        // confirmation
         const isPasswordCorrect = await bcrypt.compare(req.body.password, user1.password);
         if (!isPasswordCorrect) {
             return res.status(401).json({ success: false, msg: "Wrong password" });
         }
 
-        // create JWT token
         const token = jwt.sign(
-            { id: user1._id },
+            { id: user1._id, role: user1.role },
             process.env.JWT_SECRET,
             { expiresIn: "1d" }
         );
 
         const { password, ...otherDetails } = user1.toObject();
-        res.cookie("access_token",token,{
-            httpOnly:true,
-        }).status(200).json({ success: true, token: "BEARER " + token, user: otherDetails });
+
+        res.cookie("access_token", token, {
+            httpOnly: true,
+        }).status(200).json({
+            success: true,
+            token:  token,
+            user: { _id: user1._id, ...otherDetails } // ✅ 手动加入 _id
+        });
 
     } catch (err) {
         next(err);
     }
 };
-  

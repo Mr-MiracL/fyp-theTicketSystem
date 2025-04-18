@@ -11,11 +11,11 @@ const HelpCenter = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 向服务器发送用户输入的信息
+
     axios.post('http://localhost:5000/api/messages', { message })
       .then((res) => {
         setResponse('Your message has been sent successfully!');
-        setMessage(''); // 清空文本框
+        setMessage(''); 
       })
       .catch((err) => {
         setResponse('Error sending message. Please try again.');

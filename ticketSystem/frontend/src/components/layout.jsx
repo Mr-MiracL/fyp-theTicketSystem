@@ -7,10 +7,9 @@ import "../styles/layout.css";
 const Layout = () => {
   const { user, dispatch } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);  // 控制弹窗显示
+  const [showLogoutModal, setShowLogoutModal] = useState(false);  
   const navigate = useNavigate();
 
-  // 检查登录状态是否超时
   useEffect(() => {
     const loginTimestamp = localStorage.getItem("loginTimestamp");
     if (loginTimestamp && Date.now() - loginTimestamp > 30 * 60 * 1000) {
@@ -22,7 +21,7 @@ const Layout = () => {
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
     setShowDropdown(false);
-    setShowLogoutModal(false);  // 关闭登出弹窗
+    setShowLogoutModal(false);  
     navigate("/");
   };
 
@@ -57,20 +56,20 @@ const Layout = () => {
               </span>
               {showDropdown && (
                 <div className="dropdown-menu">
-                  <button onClick={handleOpenModal}>登出</button>
+                  <button onClick={handleOpenModal}>Logout</button>
                 </div>
               )}
             </div>
           ) : (
             <div className="auth-buttons">
-              <button onClick={() => navigate("/login")}>登录</button>
-              <button onClick={() => navigate("/register")}>注册</button>
+              <button onClick={() => navigate("/login")}>Login</button>
+              <button onClick={() => navigate("/register")}>Register</button>
             </div>
           )}
           <nav className="right-links">
-            <a href="/userCenter">Personal Center</a>
+          
             <a href="/orderPage">Order Details</a>
-            <a href="/messagePage">System Messages</a>
+            <a href="/messagePage"> Messages</a>
           </nav>
         </div>
       </header>
@@ -79,14 +78,14 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      {/* 登出弹窗 */}
+     
       {showLogoutModal && (
         <div className="logout-modal-overlay">
           <div className="logout-modal">
-            <h3>确认登出？</h3>
+            <h3>Confirm Logout?</h3>
             <div className="logout-modal-actions">
-              <button onClick={handleLogout}>确认</button>
-              <button onClick={handleCloseModal}>取消</button>
+              <button onClick={handleLogout}>Yes</button>
+              <button onClick={handleCloseModal}>No</button>
             </div>
           </div>
         </div>

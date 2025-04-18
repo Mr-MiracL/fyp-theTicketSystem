@@ -59,7 +59,7 @@ const SearchResults = () => {
         minHeight: "100vh",
       }}
     >
-      {/* 搜索栏 */}
+      {/* search bar */}
       <div className="search-bar-container" style={{ marginBottom: "2rem" }}>
         <h3 style={{ fontSize: "24px", marginBottom: "1rem" }}>Search Events</h3>
         <div className="search-bar" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -110,7 +110,7 @@ const SearchResults = () => {
         </div>
       </div>
 
-      {/* 搜索结果 */}
+      {/* search ruselts */}
       <h2 style={{ fontSize: "28px", marginBottom: "1rem" }}>Search Results</h2>
       <div
         className="event-grid"
@@ -141,16 +141,8 @@ const SearchResults = () => {
               <p style={{ color: "#555" }}>
                 {new Date(event.date).toDateString()} | {event.country}
               </p>
-              <p>
-                <strong style={{ fontSize: "18px" }}>${event.ticketPrice}</strong>
-              </p>
-              <p style={{ fontSize: "14px" }}>
-                Available Tickets:{" "}
-                <span className="tickets">{event.availableTickets}</span>
-              </p>
-              <p style={{ fontSize: "14px" }}>
-                Discount: <span className="discount">{event.discount}%</span>
-              </p>
+       
+             
               <button
                 className="book-btn"
                 onClick={() => navigate(`/events/${event._id}`)}
