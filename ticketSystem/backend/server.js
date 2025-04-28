@@ -9,6 +9,7 @@ import orderRoutes from "./router/orderRoute.js";
 import paymentRoutes from "./router/paymentRoute.js";
 import ticketRoutes from "./router/ticketRoute.js";
 import cookieParser from "cookie-parser";
+import messageRoutes from "./router/messageRoute.js";
 const app = express();
 dotenv.config();
 
@@ -28,7 +29,6 @@ app.listen(PORT, () => {
 });
 
 
-
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
@@ -40,6 +40,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/events", eventRouter);
 app.use("/api/users",userRouter)
+app.use("/api/users",messageRoutes)
 app.use((err,req,res,next)=>{
   const errorStatus=err.status || 500
   const errorMessage =err.message || "something went wrong!"
