@@ -120,3 +120,25 @@ export const deleteUserOrder = async (req, res, next) => {
     next(err);
   }
 };
+export const cancelUserOrder = async (req, res) => {
+  const { userid, orderid } = req.params;
+
+  try {
+    const order = await Order.findOne({ _id: orderid, user: userid }); 
+    if (!order) {
+      return res.status(404).json({ message: "Order not found." });
+   }
+
+   if (order.status === "cancelled") {
+   return res.status(400).json({ message: "Order already cancelled." });
+    }
+
+    order.status = "cancelled";
+   await order.save();
+
+    res.status(200).json({ message: "Order cancelled successfully." });
+ } catch (error) {
+    console.error("Cancel Order Error:", error); 
+   res.status(500).json({ message: "Server error while cancelling order." });
+ }
+};

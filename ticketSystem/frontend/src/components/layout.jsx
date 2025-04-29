@@ -1,36 +1,55 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { FaArrowLeft } from "react-icons/fa";
+import MessageModal from "../components/messageModal";
 import "../styles/layout.css";
 
 const Layout = () => {
   const { user, dispatch } = useContext(AuthContext);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);  
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showMessageModal, setShowMessageModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loginTimestamp = localStorage.getItem("loginTimestamp");
     if (loginTimestamp && Date.now() - loginTimestamp > 30 * 60 * 1000) {
-      dispatch({ type: "LOGOUT" });
-      navigate("/login");
+      handleForceLogout();
     }
-  }, [dispatch, navigate]);
+  }, []);
+
+  const handleForceLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("loginTimestamp");
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  };
 
   const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("loginTimestamp");
     dispatch({ type: "LOGOUT" });
     setShowDropdown(false);
-    setShowLogoutModal(false);  
+    setShowLogoutModal(false);
     navigate("/");
   };
 
   const handleOpenModal = () => {
+    setShowDropdown(false);
     setShowLogoutModal(true);
   };
 
   const handleCloseModal = () => {
     setShowLogoutModal(false);
+  };
+
+  const handleOpenMessageModal = () => {
+    setShowMessageModal(true);
+  };
+
+  const handleCloseMessageModal = () => {
+    setShowMessageModal(false);
   };
 
   return (
@@ -42,7 +61,7 @@ const Layout = () => {
         </div>
 
         <div className="layout-center">
-          {/* 可以放 LOGO */}
+          {/* Optional Logo */}
         </div>
 
         <div className="layout-right">
@@ -67,9 +86,8 @@ const Layout = () => {
             </div>
           )}
           <nav className="right-links">
-          
-            <a href="/orderPage">Order Details</a>
-            <a href="/messagePage"> Messages</a>
+            <Link to="/orderPage">Order Details</Link>
+            <button className="message-link" onClick={handleOpenMessageModal}>Messages</button>
           </nav>
         </div>
       </header>
@@ -78,17 +96,22 @@ const Layout = () => {
         <Outlet />
       </main>
 
-     
+    
       {showLogoutModal && (
-        <div className="logout-modal-overlay">
-          <div className="logout-modal">
+        <div className="modal-overlay">
+          <div className="modal">
             <h3>Confirm Logout?</h3>
-            <div className="logout-modal-actions">
+            <div className="modal-actions">
               <button onClick={handleLogout}>Yes</button>
               <button onClick={handleCloseModal}>No</button>
             </div>
           </div>
         </div>
+      )}
+
+      {/* Message Modal */}
+      {showMessageModal && (
+        <MessageModal onClose={handleCloseMessageModal} />
       )}
     </div>
   );

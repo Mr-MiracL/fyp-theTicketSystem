@@ -10,6 +10,7 @@ import paymentRoutes from "./router/paymentRoute.js";
 import ticketRoutes from "./router/ticketRoute.js";
 import cookieParser from "cookie-parser";
 import messageRoutes from "./router/messageRoute.js";
+import commentsRoute from "./router/commentRoute.js"
 const app = express();
 dotenv.config();
 
@@ -40,7 +41,8 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/events", eventRouter);
 app.use("/api/users",userRouter)
-app.use("/api/users",messageRoutes)
+app.use("/api/messages",messageRoutes)
+app.use("/api/comments",commentsRoute);
 app.use((err,req,res,next)=>{
   const errorStatus=err.status || 500
   const errorMessage =err.message || "something went wrong!"

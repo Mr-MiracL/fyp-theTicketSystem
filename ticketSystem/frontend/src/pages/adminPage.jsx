@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import EventList from "../components/admin/adminEventList";
 import UserList from "../components/admin/adminUserList";
 import AddEventModal from "../components/admin/addEvent";
+import AdminStats from "../components/admin/adminStats";
 import axios from "axios";
 import "../styles/adminPage.css";
 
@@ -61,6 +62,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
+      {/* 事件管理模块 */}
       {activeTab === "events" && (
         <div className="admin-section">
           <div className="admin-controls">
@@ -79,7 +81,11 @@ const AdminDashboard = () => {
         </div>
       )}
 
+      {/* 用户管理模块 */}
       {activeTab === "users" && <UserList />}
+
+      {/* 数据统计模块 */}
+      {activeTab === "stats" && <AdminStats />}
     </div>
   );
 };
