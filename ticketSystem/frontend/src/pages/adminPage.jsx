@@ -62,7 +62,7 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* 事件管理模块 */}
+    
       {activeTab === "events" && (
         <div className="admin-section">
           <div className="admin-controls">
@@ -81,10 +81,9 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* 用户管理模块 */}
+   
       {activeTab === "users" && <UserList />}
 
-      {/* 数据统计模块 */}
       {activeTab === "stats" && <AdminStats />}
     </div>
   );

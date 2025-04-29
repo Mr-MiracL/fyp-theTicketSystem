@@ -44,7 +44,7 @@ const CategoryList = () => {
           <div className="event-list">
             {filteredEvents.map((event) => (
               <div key={event._id} className="event-card">
-                <img src={event.image} alt={event.name} className="event-image" />
+               
                 <h3>{event.name}</h3>
                 <p>{new Date(event.date).toDateString()} | {event.country}</p>
              

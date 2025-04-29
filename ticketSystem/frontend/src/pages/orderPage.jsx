@@ -21,7 +21,7 @@ const OrderPage = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [cancelTargetId, setCancelTargetId] = useState(null); // 👈用于控制弹窗
+  const [cancelTargetId, setCancelTargetId] = useState(null); 
 
   useEffect(() => {
     if (!user) {
@@ -92,7 +92,7 @@ const OrderPage = () => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${user.token}`, // ✅加上 token 验证
+            Authorization: `Bearer ${user.token}`, 
           },
         }
       );
@@ -107,7 +107,7 @@ const OrderPage = () => {
       console.error("Failed to cancel order:", err);
       toast.error("Failed to cancel order: " + (err?.response?.data?.message || "Server error."));
     } finally {
-      setCancelTargetId(null); // 👈关闭弹窗
+      setCancelTargetId(null); 
     }
   };
 
@@ -167,7 +167,7 @@ const OrderPage = () => {
         ))
       )}
 
-      {/* Cancel confirmation dialog */}
+      
       {cancelTargetId && (
         <div className="modal-overlay">
           <div className="modal">

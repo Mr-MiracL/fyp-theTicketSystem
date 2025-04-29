@@ -10,7 +10,7 @@ const Comments = ({ eventId }) => {
     const fetchComments = async () => {
       try {
         const res = await axios.get(`http://localhost:5000/api/comments/event/${eventId}`);
-        // 注意这里要访问正确的数据层级
+    
         setComments(res.data.data || []);
       } catch (error) {
         console.error('Error fetching comments:', error);
@@ -47,7 +47,6 @@ const Comments = ({ eventId }) => {
         }
       );
 
-      // 新增后直接添加到列表，确保有 .data.data
       setComments((prevComments) => [...prevComments, res.data.data]);
       setNewComment('');
     } catch (error) {

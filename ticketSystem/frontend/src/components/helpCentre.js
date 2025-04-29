@@ -10,7 +10,6 @@ const HelpCenter = () => {
 
   const token = localStorage.getItem('token');
 
-  // 若未登录，自动跳转到登录页
   useEffect(() => {
     if (!token) {
       toast.error('Please login to access the Help Center.');
@@ -83,8 +82,9 @@ const HelpCenter = () => {
 
 const styles = {
   container: {
-    maxWidth: '500px',
+    maxWidth: '260px',
     margin: '40px auto',
+    
     padding: '30px',
     border: '1px solid #ddd',
     borderRadius: '8px',

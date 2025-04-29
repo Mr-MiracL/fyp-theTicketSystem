@@ -59,7 +59,7 @@ const SearchResults = () => {
         minHeight: "100vh",
       }}
     >
-      {/* search bar */}
+      
       <div className="search-bar-container" style={{ marginBottom: "2rem" }}>
         <h3 style={{ fontSize: "24px", marginBottom: "1rem" }}>Search Events</h3>
         <div className="search-bar" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -110,7 +110,7 @@ const SearchResults = () => {
         </div>
       </div>
 
-      {/* search ruselts */}
+      
       <h2 style={{ fontSize: "28px", marginBottom: "1rem" }}>Search Results</h2>
       <div
         className="event-grid"

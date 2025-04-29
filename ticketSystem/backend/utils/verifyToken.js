@@ -21,7 +21,7 @@ export const verifyToken = (req, res, next) => {
     }
 
     try {
-      const user = await User.findById(decoded.id);  // 🔥 注意这里是 id
+      const user = await User.findById(decoded.id);  
       if (!user) {
         return res.status(404).json({ message: "Unauthorized: user not found" });
       }
@@ -46,7 +46,7 @@ export const verifyUser = (req, res, next) => {
 
 export const verifyAdmin = (req, res, next) => {
     verifyToken(req, res, () => {
-    //  console.log("Decoded token user info:", req.user); 
+   
       if (req.user.role === "admin") {
         next();
       } else {

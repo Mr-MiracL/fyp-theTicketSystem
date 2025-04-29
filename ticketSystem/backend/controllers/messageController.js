@@ -1,7 +1,7 @@
 import Message from '../models/messages.js';
 import jwt from 'jsonwebtoken';
 
-// 发送消息
+
 export const sendMessage = async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
@@ -31,7 +31,7 @@ export const sendMessage = async (req, res) => {
   }
 };
 
-// 普通用户获取自己消息
+
 export const getUserMessages = async (req, res) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
@@ -46,7 +46,7 @@ export const getUserMessages = async (req, res) => {
   }
 };
 
-// 管理员获取全部消息
+
 export const getAllMessagesForAdmin = async (req, res) => {
   try {
     const messages = await Message.find().populate('user', 'username email').sort({ createdAt: -1 });
@@ -57,7 +57,7 @@ export const getAllMessagesForAdmin = async (req, res) => {
   }
 };
 
-// 管理员回复用户消息
+
 export const replyToMessage = async (req, res) => {
   try {
     const { id } = req.params;

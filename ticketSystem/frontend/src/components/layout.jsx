@@ -61,7 +61,7 @@ const Layout = () => {
         </div>
 
         <div className="layout-center">
-          {/* Optional Logo */}
+     
         </div>
 
         <div className="layout-right">
@@ -109,7 +109,7 @@ const Layout = () => {
         </div>
       )}
 
-      {/* Message Modal */}
+  
       {showMessageModal && (
         <MessageModal onClose={handleCloseMessageModal} />
       )}

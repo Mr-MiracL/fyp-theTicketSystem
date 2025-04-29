@@ -1,4 +1,3 @@
-// frontend/src/pages/EventDetail.jsx
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,7 +8,7 @@ import Comments from "../components/comments";
 
 const EventDetail = () => {
   const { id } = useParams();
-  const userId = localStorage.getItem('userId'); // 假设用户 ID 存在于 localStorage
+  const userId = localStorage.getItem('userId'); 
 
   const [event, setEvent] = useState(null);
   const [tickets, setTickets] = useState([]);
@@ -68,7 +67,7 @@ const EventDetail = () => {
         </div>
       </div>
 
-      {/* 评论区域 */}
+     
       <Comments eventId={id} userId={userId} />
     </div>
   );

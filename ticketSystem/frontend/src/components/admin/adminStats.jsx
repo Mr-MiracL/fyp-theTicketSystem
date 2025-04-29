@@ -46,7 +46,6 @@ const AdminStats = () => {
   const popularEventCount = events.filter(e => e.isPopular).length;
   const upcomingEventCount = events.filter(e => new Date(e.date) > new Date()).length;
 
-  // 按月统计订单数量
   const bookingsByMonth = bookings.reduce((acc, booking) => {
     const month = new Date(booking.createdAt).toLocaleString('default', { month: 'short', year: 'numeric' });
     acc[month] = (acc[month] || 0) + 1;
@@ -54,12 +53,19 @@ const AdminStats = () => {
   }, {});
   const bookingsChartData = Object.entries(bookingsByMonth).map(([month, count]) => ({ month, count }));
 
-  // 活动分类统计
   const categoryCount = events.reduce((acc, event) => {
     acc[event.category] = (acc[event.category] || 0) + 1;
     return acc;
   }, {});
   const categoryChartData = Object.entries(categoryCount).map(([name, value]) => ({ name, value }));
+
+
+  const categoryTicketSales = events.reduce((acc, event) => {
+    const ticketCount = bookings.filter(booking => booking.eventId === event.id).length;
+    acc[event.category] = (acc[event.category] || 0) + ticketCount;
+    return acc;
+  }, {});
+  const categoryTicketSalesData = Object.entries(categoryTicketSales).map(([category, sales]) => ({ category, sales }));
 
   return (
     <div className="admin-stats-container">
@@ -105,6 +111,18 @@ const AdminStats = () => {
               <Tooltip />
               <Legend />
             </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="chart-box">
+          <h3>🎟️ Ticket Sales by Event Category</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={categoryTicketSalesData}>
+              <XAxis dataKey="category" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="sales" fill="#82ca9d" />
+            </BarChart>
           </ResponsiveContainer>
         </div>
       </div>

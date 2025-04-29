@@ -12,6 +12,7 @@
   z-index: 1000;
 }
 
+
 .modal-content {
   background-color: #fff;
   padding: 30px;
@@ -23,72 +24,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.modal-content h3 {
-  margin-bottom: 20px;
-  font-size: 1.5em;
-  text-align: center;
-  color: #333;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.modal-actions button {
-  padding: 12px 20px;
-  font-size: 1em;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 48%;
-}
-
-.modal-actions button:hover {
-  background-color: #0056b3;
-}
-
-.modal-actions button.cancel {
-  background-color: #ccc;
-  width: 48%;
-}
-
-.modal-actions button.cancel:hover {
-  background-color: #999;
-}
-
-.event-list-container {
-  padding: 20px;
-}
-
-.event-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  overflow: hidden; 
-}
-
-.event-table th, .event-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.event-table th {
-  background-color: #f7f7f7;
-  color: #555;
-  font-weight: bold;
-}
-
-.event-table td {
-  color: #333;
-}
 
 button {
   background-color: #28a745;
@@ -104,54 +39,15 @@ button:hover {
   background-color: #218838;
 }
 
-.ticket-management {
-  text-align: center;
-}
-
-.ticket-management ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.ticket-management li {
-  margin: 12px 0;
-  font-size: 1.1em;
-}
-
-.ticket-management button {
-  padding: 8px 15px;
-  background-color: #ff5722;
-  border-radius: 8px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-}
-
-.ticket-management button:hover {
-  background-color: #e64a19;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1em;
-  transition: border-color 0.3s ease;
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: #007bff;
+button:focus {
   outline: none;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 100px;
+
+.ticket-list li {
+  margin: 5px 0;
 }
+
 .ticket-actions {
   display: flex;
   gap: 10px;
@@ -171,23 +67,18 @@ textarea {
   background-color: #145ca3;
 }
 
-.ticket-list {
-  list-style: none;
-  padding-left: 0;
-}
 
-.ticket-list li {
-  margin: 5px 0;
-}
-.modal-content input,
-.modal-content select {
+input, textarea, select {
   width: 100%;
-  padding: 6px;
-  margin: 5px 0 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
 }
 
-.modal-content button {
-  margin-right: 10px;
+input:focus, textarea:focus, select:focus {
+  border-color: #007bff;
+  outline: none;
 }

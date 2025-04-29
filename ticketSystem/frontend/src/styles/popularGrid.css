@@ -1,35 +1,78 @@
+.popular-events-container {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.popular-events-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
 .event-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);  
-  gap: 20px;
-  padding: 20px;
+  grid-template-columns: repeat(3, 1fr);  
+  gap: 24px;
+  padding: 0 20px;
 }
 
 .event-card {
-  background: #eee;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom right, #ffffff, #f1f1f1);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.event-card h3 {
+  font-size: 1.3rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.event-card p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
 }
 
 .book-btn {
-  background: black;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
   color: white;
-  padding: 10px;
+  padding: 10px 18px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
+.book-btn:hover {
+  background: linear-gradient(135deg, #ff6a3d, #ffb56b);
+  transform: scale(1.05);
+}
 
 .load-more-btn {
   display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: black;
+  margin: 30px auto 0;
+  padding: 12px 28px;
+  background: linear-gradient(to right, #4b6cb7, #182848);
   color: white;
+  font-weight: bold;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.load-more-btn:hover {
+  background: linear-gradient(to right, #3551a2, #121e36);
+  transform: translateY(-2px);
 }

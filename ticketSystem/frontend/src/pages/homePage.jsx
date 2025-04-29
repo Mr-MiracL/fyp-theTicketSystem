@@ -28,7 +28,7 @@ const HomePage = () => {
     <div className="homepage-container">
       
       <CategoryList />
-      <RecommendedEvents /> {/* ✅ 插入推荐组件 */}
+      
       <SearchBar 
         country={country} 
         setCountry={setCountry} 
@@ -39,7 +39,7 @@ const HomePage = () => {
      
       <div className="main-content">
         <div className="left-content">
-          
+        <RecommendedEvents />
           <PopularGrid />
         </div>
         <HelpCenter />

@@ -51,7 +51,7 @@ export const login = async (req, res, next) => {
         }).status(200).json({
             success: true,
             token:  token,
-            user: { _id: user1._id, ...otherDetails } // ✅ 手动加入 _id
+            user: { _id: user1._id, ...otherDetails } 
         });
 
     } catch (err) {

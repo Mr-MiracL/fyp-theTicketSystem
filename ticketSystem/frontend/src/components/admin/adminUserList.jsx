@@ -80,7 +80,7 @@ const AdminUserList = () => {
         </tbody>
       </table>
 
-      {/* Pagination Controls */}
+
       <div className="pagination">
         <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
           &lt;

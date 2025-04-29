@@ -1,83 +1,133 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
-  
-  .modal-content {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
+  to {
+    opacity: 1;
   }
-  
-  .modal-content h2 {
-    margin-bottom: 1rem;
-    text-align: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); 
+  transform: scale(0.9);
+  animation: modalIn 0.3s forwards; 
+}
+
+@keyframes modalIn {
+  from {
+    transform: scale(0.9);
   }
-  
-  .form-group label {
-    display: block;
-    margin: 0.5rem 0 0.2rem;
-    font-weight: 600;
+  to {
+    transform: scale(1);
   }
-  
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 0.6rem;
-    margin-bottom: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+}
+
+.modal-content h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem; 
+  color: #333;
+}
+
+.form-group label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #2e8b57;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s ease;
+}
+
+.modal-buttons button:hover {
+  background: #247246;
+  transform: scale(1.05); 
+}
+
+.cancel-btn {
+  background: #888;
+}
+
+.cancel-btn:hover {
+  background: #666; 
+}
+
+.toast {
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4caf50;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-top: 1rem;
+  animation: toastIn 0.5s forwards; 
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    bottom: -2rem;
   }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+  to {
+    opacity: 1;
+    bottom: 1rem;
   }
-  
-  .modal-buttons button {
-    flex: 1;
-    padding: 0.6rem;
-    border: none;
-    border-radius: 8px;
-    background: #2e8b57;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .modal-buttons button:hover {
-    background: #247246;
-  }
-  
-  .cancel-btn {
-    background: #888;
-  }
-  
-  .toast {
-    position: absolute;
-    bottom: -1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #4caf50;
-    color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-  }
-  
+}

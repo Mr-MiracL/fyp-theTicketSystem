@@ -56,7 +56,7 @@ const Payment = () => {
         ],
       });
 
-      // refresh available tickets
+
       fetchTicket();
     } catch (error) {
       console.error("Error creating order:", error);
