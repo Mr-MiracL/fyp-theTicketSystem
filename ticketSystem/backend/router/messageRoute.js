@@ -20,7 +20,7 @@ router.get('/user', verifyToken, getUserMessages);
 router.get('/all', verifyToken, verifyAdmin, getAllMessagesForAdmin);
 
 // 管理员回复某条消息
-router.put('/:id/reply', verifyToken, verifyAdmin, replyToMessage);
+router.put('/reply/:id', verifyToken, verifyAdmin, replyToMessage);
 
 export default router;
 

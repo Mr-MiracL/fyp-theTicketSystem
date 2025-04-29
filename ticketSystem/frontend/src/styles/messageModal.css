@@ -1,71 +1,91 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-  }
-  
-  .message-modal {
-    background: white;
-    padding: 2rem;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 10px;
-    max-height: 80%;
-    overflow: auto;
-  }
-  
-  .messages-list {
-    margin-top: 1rem;
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 5px;
-  }
-  
-  .message-card {
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    background: #f9f9f9;
-  }
-  
-  .message-text {
-    margin-bottom: 0.5rem;
-  }
-  
-  .reply-text {
-    margin-bottom: 0.5rem;
-    color: #2e7d32;
-  }
-  
-  .timestamp {
-    font-size: 0.8rem;
-    color: #999;
-    text-align: right;
-  }
-  
-  .modal-actions {
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .modal-actions button {
-    background: #1976d2;
-    color: white;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modal-actions button:hover {
-    background: #1565c0;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.message-modal {
+  width: 80%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.message-modal h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.message-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+.message-text,
+.reply-text,
+.username,
+.timestamp {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.reply-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.reply-box textarea {
+  width: 100%;
+  padding: 0.5rem;
+  resize: vertical;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.reply-box button {
+  align-self: flex-end;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-actions {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.modal-actions button {
+  padding: 0.5rem 1rem;
+  background-color: #8884d8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

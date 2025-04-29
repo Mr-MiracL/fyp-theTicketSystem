@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 
 import SearchBar from "../components/searchBar";
-
+import RecommendedEvents from "../components/recommendEvents";
 import HelpCenter from "../components/helpCentre";
 import PopularGrid from "../components/popularGrid";
 import CategoryList from "../components/categoryList";
@@ -28,6 +28,7 @@ const HomePage = () => {
     <div className="homepage-container">
       
       <CategoryList />
+      <RecommendedEvents /> {/* ✅ 插入推荐组件 */}
       <SearchBar 
         country={country} 
         setCountry={setCountry} 
@@ -42,6 +43,7 @@ const HomePage = () => {
           <PopularGrid />
         </div>
         <HelpCenter />
+        
       </div>
     </div>
   );

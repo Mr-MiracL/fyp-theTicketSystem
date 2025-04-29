@@ -21,17 +21,19 @@ body, html {
 }
 
 .left-content {
-    flex: 2;  
-}
-
-
-.help-center {
-    flex: 1;  
+    flex: 1.5;  
+  }
+  
+  .help-center {
+    flex: 1.2; 
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
-}
-
+    border-radius: 8px;
+    
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+  
 
 .category-container {
     display: flex;
