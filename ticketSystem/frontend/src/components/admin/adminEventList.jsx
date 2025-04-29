@@ -119,7 +119,7 @@ const AdminEventList = ({ events, setEvents }) => {
           <option value="Others">Others</option>
         </select>
       </div>
-
+<div className="event-container">
       <ul className="event-list">
         {filteredEvents.map((event) => (
           <li key={event._id} className="event-item">
@@ -134,7 +134,7 @@ const AdminEventList = ({ events, setEvents }) => {
           </li>
         ))}
       </ul>
-
+      </div>
       {selectedEventId && (
         <div className="modal-container">
           <div className="modal-content">

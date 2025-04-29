@@ -10,12 +10,7 @@ const HelpCenter = () => {
 
   const token = localStorage.getItem('token');
 
-  useEffect(() => {
-    if (!token) {
-      toast.error('Please login to access the Help Center.');
-      navigate('/login');
-    }
-  }, [token, navigate]);
+ 
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
