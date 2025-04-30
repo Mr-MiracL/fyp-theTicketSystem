@@ -1,54 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "framer-motion";
 import "../styles/searchBar.css";
 
 const SearchResults = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const queryParams = new URLSearchParams(location.search);
-  const [country, setCountry] = useState(queryParams.get("country") || "");
-  const [dates, setDates] = useState({
-    startDate: queryParams.get("startDate") || "",
-    endDate: queryParams.get("endDate") || "",
-  });
-  const [keyword, setKeyword] = useState(queryParams.get("keyword") || "");
-
+  const [country, setCountry] = useState("");
+  const [dates, setDates] = useState({ startDate: "", endDate: "" });
+  const [keyword, setKeyword] = useState("");
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const fetchFilteredEvents = async () => {
+    const fetchAllEvents = async () => {
       try {
-        const params = {};
-        if (country) params.country = country;
-        if (dates.startDate) params.startDate = dates.startDate;
-        if (dates.endDate) params.endDate = dates.endDate;
-        if (keyword) params.keyword = keyword;
-
-        const response = await axios.get("http://localhost:5000/api/events", {
-          params,
-        });
-
+        const response = await axios.get("http://localhost:5000/api/events");
         setEvents(response.data);
       } catch (error) {
         console.error("Error fetching events:", error);
       }
     };
 
-    fetchFilteredEvents();
-  }, [country, dates.startDate, dates.endDate, keyword]);
+    fetchAllEvents();
+  }, []);
 
-  const handleSearch = () => {
-    let searchParams = "?";
-    if (country) searchParams += `country=${country}&`;
-    if (dates.startDate) searchParams += `startDate=${dates.startDate}&`;
-    if (dates.endDate) searchParams += `endDate=${dates.endDate}&`;
-    if (keyword) searchParams += `keyword=${keyword}&`;
-    searchParams = searchParams.slice(0, -1);
-    navigate(`/search-results${searchParams}`);
-  };
+  const filteredEvents = events.filter((event) => {
+    const matchCountry = country ? event.country === country : true;
+    const matchKeyword = keyword
+      ? event.name.toLowerCase().includes(keyword.toLowerCase())
+      : true;
+
+    const eventDate = new Date(event.date);
+    const matchStartDate = dates.startDate
+      ? eventDate >= new Date(dates.startDate)
+      : true;
+    const matchEndDate = dates.endDate
+      ? eventDate <= new Date(dates.endDate)
+      : true;
+
+    return matchCountry && matchKeyword && matchStartDate && matchEndDate;
+  });
 
   return (
     <div
@@ -59,10 +51,14 @@ const SearchResults = () => {
         minHeight: "100vh",
       }}
     >
-      
       <div className="search-bar-container" style={{ marginBottom: "2rem" }}>
-        <h3 style={{ fontSize: "24px", marginBottom: "1rem" }}>Search Events</h3>
-        <div className="search-bar" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <h3 style={{ fontSize: "24px", marginBottom: "1rem" }}>
+          Search Events
+        </h3>
+        <div
+          className="search-bar"
+          style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
+        >
           <select
             className="select-dropdown"
             value={country}
@@ -103,14 +99,9 @@ const SearchResults = () => {
             onChange={(e) => setKeyword(e.target.value)}
             placeholder="Enter keyword"
           />
-
-          <button className="search-btn" onClick={handleSearch}>
-            Search
-          </button>
         </div>
       </div>
 
-      
       <h2 style={{ fontSize: "28px", marginBottom: "1rem" }}>Search Results</h2>
       <div
         className="event-grid"
@@ -120,8 +111,8 @@ const SearchResults = () => {
           gap: "1.5rem",
         }}
       >
-        {events.length > 0 ? (
-          events.map((event, index) => (
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event, index) => (
             <motion.div
               key={event._id}
               className="event-card"
@@ -137,12 +128,13 @@ const SearchResults = () => {
               }}
               whileHover={{ scale: 1.03 }}
             >
-              <h3 style={{ fontSize: "20px", marginBottom: "0.5rem" }}>{event.name}</h3>
+              <h3 style={{ fontSize: "20px", marginBottom: "0.5rem" }}>
+                {event.name}
+              </h3>
               <p style={{ color: "#555" }}>
                 {new Date(event.date).toDateString()} | {event.country}
               </p>
-       
-             
+
               <button
                 className="book-btn"
                 onClick={() => navigate(`/events/${event._id}`)}
