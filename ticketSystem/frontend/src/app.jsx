@@ -11,7 +11,7 @@ import { AuthContextProvider } from "./context/authContext.js";
 import EventDetail from "./pages/EventDetail.jsx";
 import EventList from "./pages/categoryList.jsx"
 import { SearchContextProvider } from "./context/searchContext.js"
-import HelpCenter from "./pages/helpCentrePage.jsx";
+import HelpCentre from "./pages/helpCentrePage.jsx";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/layout.jsx"
 import "react-toastify/dist/ReactToastify.css";
@@ -30,7 +30,7 @@ function App() {
               <Route path="/events/:id" element={<EventDetail />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/search-results" element={<SearchResults />} />
-              <Route path="/helpCenter" element={<HelpCenter />} />
+              <Route path="/helpCentre" element={<HelpCentre />} />
               <Route path="/payment/:ticketId" element={<Payment />} />
               <Route path="/orderPage" element={<OrderPage />} />
             </Route>

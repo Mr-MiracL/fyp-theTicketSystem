@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../styles/helpCenter.css"
 
-const HelpCenter = () => {
+const HelpCentre = () => {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const faqData = [
@@ -77,4 +77,4 @@ const HelpCenter = () => {
   );
 };
 
-export default HelpCenter;
+export default HelpCentre;

@@ -52,7 +52,7 @@ const HelpCenter = () => {
 
       <p>
         You can also visit our{' '}
-        <a href="/helpCenter" target="_blank" rel="noopener noreferrer">
+        <a href="/helpCentre" target="_blank" rel="noopener noreferrer">
           full Help Center page
         </a>
         {' '}for FAQs and more information.
